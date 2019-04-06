@@ -73,7 +73,7 @@ rpe16 <- rpe %>%
 standard_rpe <- rbind(rpe1,rpe2,rpe3,rpe4,rpe5,rpe6,rpe7,rpe8,rpe9,rpe10,rpe11,rpe12,rpe13,rpe14,rpe15,rpe16)
 
 standard_rpe <- standard_rpe %>% 
-  select("Date", "PlayerID", "SessionType", "SessionLoad", "DailyLoad", "AcuteLoad", "ChronicLoad", "standard_rpe")
+  select("Date", "PlayerID", "SessionType", "Duration", "SessionLoad", "DailyLoad", "AcuteLoad", "ChronicLoad", "standard_rpe")
 ```
 
 > > > > > > > 35c98b980b0982ad87cc6b7415f73d9e7c4a16d4
@@ -88,10 +88,22 @@ standard_rpe <- standard_rpe %>%
 sample <- rpe %>%
   drop_na() %>%
   select("PlayerID", "Duration", "RPE", "SessionLoad", "DailyLoad", "AcuteLoad", "ChronicLoad", "AcuteChronicRatio", "ObjectiveRating", "FocusRating")
+```
 
-small_sample <- sample %>%
-  head(20)
-  #c(26, 36, 78, 96, 109, 198, 204, 345, 389, 469, 490, 501, 521, 567, 589, 601, 623, 639)
+``` r
+standard_rpe <- standard_rpe %>%
+  mutate(Duration = case_when(
+    is.na(Duration) ~ 0,
+    TRUE ~ Duration
+  ))
 
-write.csv(small_sample, "small_sample.csv")
+standard_rpe <- standard_rpe %>%
+  mutate(SessionLoad = case_when(
+    is.na(SessionLoad) ~ 0,
+    TRUE ~ SessionLoad
+  ))
+
+standard_rpe <-standard_rpe %>%
+  mutate(DailyLoad = case_when(SessionType== "Rest" ~0, 
+         TRUE ~ DailyLoad))
 ```
