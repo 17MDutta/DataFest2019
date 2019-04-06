@@ -121,7 +121,46 @@ standard_rpe <-standard_rpe %>%
   mutate(DailyLoad = case_when(SessionType== "Rest" ~0, 
          TRUE ~ DailyLoad))
 
-  
+tourneyrpe <- merge(standard_rpe, games, by= "Date")
+
+tourneyrpe <- tourneyrpe %>%
+  mutate(standard_rpe = case_when(is.na(standard_rpe) ~ 0, 
+                                  TRUE ~ standard_rpe))
+```
+
+```{r}
+teamrpe <- tourneyrpe %>%
+  group_by(Date) %>%
+  summarise(team_rpe = mean(standard_rpe))
+
+tourneyrpe <- tourneyrpe %>%
+  mutate(Outcome = case_when(Outcome == "W" ~1, TRUE ~0 ))
+
+games <-games %>%
+  mutate(Outcome = case_when(Outcome == "W" ~1, TRUE ~0 ))
+
+
+```
+
+```{r}
+uniquedate <- unique(games$Date)
+
+winp =c()
+
+```
+
+```{r}
+winpvec <- c()
+for (i in 1:length(uniquedate)) {
+  gamessub <- subset(games, games$Date==uniquedate[i])
+  winp <- c(winp,sum(gamessub$Outcome)/length(gamessub$Outcome))
+  winpvec = c(winpvec,rep(winp[i],length(gamessub$Outcome)))
+}
+
+games$winper = winpvec
+
+games$winodds = games$winper/(1-games$winper) 
+
 
 
 ```
