@@ -7,8 +7,9 @@ output: github_document
 library(tidyverse)
 library(knitr)
 library(broom)
+
+games <- read_csv("data/games.csv")
+rpe <- read_csv("data/rpe.csv")
+wellness <- read_csv("data/wellness.csv")
 ```
 
-## R Markdown
-
-helloe
