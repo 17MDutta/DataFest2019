@@ -1,6 +1,97 @@
 DataFest
 ================
 
-## R Markdown
+\<\<\<\<\<\<\< HEAD
 
-helloe
+\=======
+
+``` r
+rpe1 <- rpe %>%
+  filter(PlayerID == 1) %>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe2 <- rpe %>%
+  filter(PlayerID == 2) %>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe3 <- rpe %>%
+  filter(PlayerID == 3) %>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe4 <- rpe %>%
+  filter(PlayerID == 4)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe5 <- rpe %>%
+  filter(PlayerID == 5)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe6 <- rpe %>%
+  filter(PlayerID == 6)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe7 <- rpe %>%
+  filter(PlayerID == 7)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe8 <- rpe %>%
+  filter(PlayerID == 8)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe9 <- rpe %>%
+  filter(PlayerID == 9)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe10 <- rpe %>%
+  filter(PlayerID == 10)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe11 <- rpe %>%
+  filter(PlayerID == 11)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe12 <- rpe %>%
+  filter(PlayerID == 12)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe13 <- rpe %>%
+  filter(PlayerID == 13)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe14 <- rpe %>%
+  filter(PlayerID == 14)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe15 <- rpe %>%
+  filter(PlayerID == 15)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe16 <- rpe %>%
+  filter(PlayerID == 16)%>%
+  mutate(standard_rpe = scale(RPE))
+
+standard_rpe <- rbind(rpe1,rpe2,rpe3,rpe4,rpe5,rpe6,rpe7,rpe8,rpe9,rpe10,rpe11,rpe12,rpe13,rpe14,rpe15,rpe16)
+
+standard_rpe <- standard_rpe %>% 
+  select("Date", "PlayerID", "SessionType", "SessionLoad", "DailyLoad", "AcuteLoad", "ChronicLoad", "standard_rpe")
+```
+
+> > > > > > > 35c98b980b0982ad87cc6b7415f73d9e7c4a16d4
+
+``` r
+standard_rpe <- standard_rpe %>%
+  mutate(SessionType = case_when(
+    SessionType %in% c("Combat", "Conditioning", "Game", "Mobility/Recovery", "Skills", "Speed", "Strength") ~ 
+      SessionType, TRUE ~ "Rest"
+  ))
+
+sample <- rpe %>%
+  drop_na() %>%
+  select("PlayerID", "Duration", "RPE", "SessionLoad", "DailyLoad", "AcuteLoad", "ChronicLoad", "AcuteChronicRatio", "ObjectiveRating", "FocusRating")
+
+small_sample <- sample %>%
+  head(20)
+  #c(26, 36, 78, 96, 109, 198, 204, 345, 389, 469, 490, 501, 521, 567, 589, 601, 623, 639)
+
+write.csv(small_sample, "small_sample.csv")
+```
