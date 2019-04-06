@@ -13,3 +13,71 @@ rpe <- read_csv("data/rpe.csv")
 wellness <- read_csv("data/wellness.csv")
 ```
 
+```{r}
+rpe1 <- rpe %>%
+  filter(PlayerID == 1) %>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe2 <- rpe %>%
+  filter(PlayerID == 2) %>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe3 <- rpe %>%
+  filter(PlayerID == 3) %>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe4 <- rpe %>%
+  filter(PlayerID == 4)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe5 <- rpe %>%
+  filter(PlayerID == 5)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe6 <- rpe %>%
+  filter(PlayerID == 6)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe7 <- rpe %>%
+  filter(PlayerID == 7)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe8 <- rpe %>%
+  filter(PlayerID == 8)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe9 <- rpe %>%
+  filter(PlayerID == 9)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe10 <- rpe %>%
+  filter(PlayerID == 10)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe11 <- rpe %>%
+  filter(PlayerID == 11)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe12 <- rpe %>%
+  filter(PlayerID == 12)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe13 <- rpe %>%
+  filter(PlayerID == 13)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe14 <- rpe %>%
+  filter(PlayerID == 14)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe15 <- rpe %>%
+  filter(PlayerID == 15)%>%
+  mutate(standard_rpe = scale(RPE))
+
+rpe16 <- rpe %>%
+  filter(PlayerID == 16)%>%
+  mutate(standard_rpe = scale(RPE))
+
+standard_rpe <- rbind(rpe1,rpe2,rpe3,rpe4,rpe5,rpe6,rpe7,rpe8,rpe9,rpe10,rpe11,rpe12,rpe13,rpe14,rpe15,rpe16)
+```
+
